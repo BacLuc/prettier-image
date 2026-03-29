@@ -4,6 +4,13 @@ on:
   push:
   workflow_dispatch:
 
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        description: "The branch or tag to release"
+        required: true
+
 env:
   DOCKER_BUILDKIT: 1
   COMPOSE_DOCKER_CLI_BUILD: 1
@@ -13,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
       - name: Run tests
         run: |
           docker compose run --rm --build prettier
