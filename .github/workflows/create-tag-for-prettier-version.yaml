@@ -1,0 +1,25 @@
+name: Create new tag for prettier changes
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  create-missing-tag:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: create missing tag
+        run: |
+          # renovate: datasource=npm depName=prettier
+          PRETTIER_VERSION=3.3.3
+
+          if [ "${{ github.ref }}" != "refs/heads/main" ]; then
+            PRETTIER_VERSION=3.3.3_test
+          fi
+
+          if ! git ls-remote --tags origin | grep $PRETTIER_VERSION; then
+            git push origin @:refs/tags/$PRETTIER_VERSION
+          fi
