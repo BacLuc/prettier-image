@@ -4,6 +4,13 @@ on:
   push:
   workflow_dispatch:
 
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        description: "The branch or tag to release"
+        required: true
+
 env:
   DOCKER_BUILDKIT: 1
   COMPOSE_DOCKER_CLI_BUILD: 1
@@ -13,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
       - name: Run tests
         run: |
           docker compose run --rm --build prettier
@@ -47,25 +57,30 @@ jobs:
             return context.repo.owner.toLowerCase()
 
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
 
       - name: Set nightly tag if commit was on main
         id: add-nightly-tag
-        if: startsWith(github.ref, 'refs/heads/main')
+        if: startsWith(inputs.ref || github.ref, 'refs/heads/main')
         run: |
           echo "nightly-tag=nightly" | tr -d "\n"  >> $GITHUB_OUTPUT
 
       - name: Set latest tag if its a tag
         id: add-latest-tag
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(inputs.ref || github.ref, 'refs/tags/')
         run: |
           echo "latest-tag=latest" | tr -d "\n"  >> $GITHUB_OUTPUT
 
       - uses: actions/github-script@v7
         id: get-tag
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(inputs.ref || github.ref, 'refs/tags/')
         with:
           result-encoding: string
           script: |
+            if (context?.inputs?.ref) {
+              return context.inputs?.ref.replace('refs/tags/', '')
+            }
             return context.payload.ref.replace('refs/tags/', '')
 
       - name: concat tags to list
