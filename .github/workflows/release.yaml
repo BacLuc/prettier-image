@@ -18,6 +18,16 @@ jobs:
           docker compose run --rm --build prettier
           git diff --exit-code
 
+      - name: Format single file
+        run: |
+          docker compose run --rm prettier --write test-files/sample.md 
+          git diff --exit-code
+
+      - name: Check custom pattern
+        run: |
+          docker compose run --rm prettier --check test-files/** 
+          git diff --exit-code
+
   build-info:
     runs-on: ubuntu-latest
     needs:

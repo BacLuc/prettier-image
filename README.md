@@ -1,91 +1,29 @@
-# Prettier container to format yaml, markdown and whatnot
+# Prettier Docker Image
 
-Just mount what you want to format in /workspace and Prettier will format it for you.
+A Docker image for running Prettier with .gitignore support.
 
-## From here on this is LLM generated content
+## Features
 
-Here is an example Markdown text that includes various features and headings down to level 4, formatted with Prettier:
+- **Gitignore Support**: Respects .gitignore patterns
+- **Flexible Arguments**: Pass any prettier arguments
 
-This is a paragraph of text with **bold** and _italic_ formatting.
+## Usage
 
-## Heading 2
+```bash
+# Format all files in current directory
+docker compose run --rm prettier
 
----
+# Format specific files
+docker compose run --rm prettier --write 'test-files/**/*.js'
 
-### Heading 3
-
----
-
-#### Heading 4
-
----
-
-### Lists
-
-- Item 1
-- Item 2
-- Item 3
-
-### Ordered List
-
-1. Item 1
-2. Item 2
-3. Item 3
-
-### Code Block
-
-```javascript
-function add(a, b) {
-  return a + b;
-}
+# Check formatting
+docker compose run --rm prettier --check '**/*.js'
 ```
 
-### Table
+## Test Files
 
-| Column 1   | Column 2   | Column 3   |
-| ---------- | ---------- | ---------- |
-| Cell 1     | Cell 2     | Cell 3     |
-| ---------- | ---------- | ---------- |
-| Cell 4     | Cell 5     | Cell 6     |
+The `test-files/` directory contains sample files for testing.
 
-### Links
+## Auto-Updates
 
-[Link to Google](https://www.google.com)
-
-### Images
-
-![Image of a cat](https://example.com/cat.jpg)
-
-### Blockquotes
-
-> This is a blockquote with multiple lines.
->
-> It can span multiple lines.
-
-### Definition List
-
-; Term 1
-: Definition 1
-
-; Term 2
-: Definition 2
-
-### Footnotes
-
-This is a paragraph with a footnote[^1].
-
-[^1]: This is the footnote text.
-
-### Abbreviations
-
-This is a paragraph with an abbreviation [HTML].
-
-[HTML]: HyperText Markup Language
-
-### Strikethrough
-
-~~This text is strikethrough~~
-
-```
-Note that Prettier will format the Markdown text to be consistent and readable, but it will not change the content or structure of the text.
-```
+Renovate bot automatically updates Prettier to the latest version.
