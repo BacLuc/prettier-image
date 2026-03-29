@@ -2,6 +2,10 @@ name: "Test and release prettier image"
 
 on:
   push:
+    branches:
+      - "**"
+    tags:
+      - "**"
   workflow_dispatch:
 
 env:
