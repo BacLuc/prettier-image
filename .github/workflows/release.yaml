@@ -78,6 +78,7 @@ jobs:
         with:
           result-encoding: string
           script: |
+            console.log(JSON.stringify(context))
             if (context?.inputs?.ref) {
               return context.inputs?.ref.replace('refs/tags/', '')
             }
