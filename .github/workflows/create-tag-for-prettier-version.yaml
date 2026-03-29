@@ -12,7 +12,7 @@ jobs:
       RUN_RELEASE: ${{ steps.create-tag.outputs.RUN_RELEASE }}
       PRETTIER_VERSION: ${{ steps.create-tag.outputs.PRETTIER_VERSION }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: create missing tag
         id: create-tag

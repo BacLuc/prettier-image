@@ -20,7 +20,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ inputs.ref }}
 
@@ -57,7 +57,7 @@ jobs:
           script: |
             return context.repo.owner.toLowerCase()
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           ref: ${{ inputs.ref }}
 
@@ -131,7 +131,7 @@ jobs:
       tags: ${{ needs.build-info.outputs.tags }}
       repo-owner: ${{ needs.build-info.outputs.repo-owner }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - run: |
           echo "inputs:"
