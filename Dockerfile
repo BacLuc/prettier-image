@@ -3,7 +3,7 @@ FROM node:24.14.1
 RUN apt-get update && apt-get install -y git
 
 # renovate: datasource=npm depName=prettier
-ENV PRETTIER_VERSION=3.8.1
+ENV PRETTIER_VERSION=3.8.2
 
 RUN npm install -g prettier@${PRETTIER_VERSION}
 
