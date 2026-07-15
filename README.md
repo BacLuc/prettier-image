@@ -29,12 +29,13 @@ The `test-files/` directory contains sample files for testing.
 
 The image bundles these Prettier plugins (versions tracked in [`package.json`](package.json)):
 
-| Plugin                        | Formats                        |
-| ----------------------------- | ------------------------------ |
-| `prettier-plugin-packagejson` | `package.json` key ordering    |
-| `prettier-plugin-sort-json`   | JSON key sorting               |
-| `prettier-plugin-sql`         | `.sql` files                   |
-| `prettier-plugin-sh`          | `Dockerfile` and shell scripts |
+| Plugin                                  | Formats                        |
+| --------------------------------------- | ------------------------------ |
+| `@trivago/prettier-plugin-sort-imports` | TS/JS import ordering          |
+| `prettier-plugin-packagejson`           | `package.json` key ordering    |
+| `prettier-plugin-sort-json`             | JSON key sorting               |
+| `prettier-plugin-sql`                   | `.sql` files                   |
+| `prettier-plugin-sh`                    | `Dockerfile` and shell scripts |
 
 Plugins are auto-loaded on every invocation — no `--plugin` flags needed.
 

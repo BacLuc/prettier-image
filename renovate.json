@@ -17,6 +17,7 @@
   "packageRules": [
     {
       "matchPackageNames": [
+        "@trivago/prettier-plugin-sort-imports",
         "prettier",
         "prettier-plugin-packagejson",
         "prettier-plugin-sh",
