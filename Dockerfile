@@ -2,10 +2,11 @@ FROM node:24.16.0
 
 RUN apt-get update && apt-get install -y git
 
-# renovate: datasource=npm depName=prettier
-ENV PRETTIER_VERSION=3.9.4
+COPY package.json package-lock.json /opt/prettier-deps/
+RUN cd /opt/prettier-deps && npm ci \
+  && ln -s /opt/prettier-deps/node_modules/.bin/prettier /usr/local/bin/prettier
 
-RUN npm install -g prettier@${PRETTIER_VERSION}
+ENV PRETTIER_DEPS=/opt/prettier-deps/node_modules
 
 WORKDIR /workspace
 

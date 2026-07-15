@@ -1,8 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
   "automergeType": "branch",
-  "minimumReleaseAge": "14 days",
   "customManagers": [
     {
       "customType": "regex",
@@ -14,9 +12,17 @@
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
   ],
+  "extends": ["config:recommended"],
+  "minimumReleaseAge": "14 days",
   "packageRules": [
     {
-      "matchPackageNames": ["prettier"],
+      "matchPackageNames": [
+        "prettier",
+        "prettier-plugin-packagejson",
+        "prettier-plugin-sh",
+        "prettier-plugin-sort-json",
+        "prettier-plugin-sql"
+      ],
       "automerge": true
     }
   ],
