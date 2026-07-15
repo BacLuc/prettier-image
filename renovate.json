@@ -16,18 +16,29 @@
   "minimumReleaseAge": "14 days",
   "packageRules": [
     {
-      "matchPackageNames": [
-        "@trivago/prettier-plugin-sort-imports",
-        "prettier",
-        "prettier-plugin-packagejson",
-        "prettier-plugin-sh",
-        "prettier-plugin-sort-json",
-        "prettier-plugin-sql"
-      ],
-      "automerge": true
+      "matchManagers": ["npm", "dockerfile"],
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "labels": ["bump:patch"]
+    },
+    {
+      "matchManagers": ["npm", "dockerfile"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": true,
+      "labels": ["bump:minor"]
+    },
+    {
+      "matchManagers": ["npm", "dockerfile"],
+      "matchUpdateTypes": ["major"],
+      "labels": ["bump:major"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "labels": ["dependency"]
     }
   ],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
-  "rebaseWhen": "conflicted"
+  "rebaseWhen": "conflicted",
+  "separateMinorPatch": true
 }
