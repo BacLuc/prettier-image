@@ -10,6 +10,9 @@ on:
       - labeled
       - unlabeled
       - closed
+    # Changes confined to test-files don't warrant a new image release.
+    paths-ignore:
+      - "test-files/**"
 
 jobs:
   create-release-tag:
