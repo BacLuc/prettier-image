@@ -1,0 +1,22 @@
+name: Autorelease
+on:
+  pull_request:
+    # Run when PR head branch is updated (synchronize), when the set of PR
+    # labels is changed (labeled, unlabeled), and after the PR is closed. We
+    # additionally check for `merged==true` in the event payload on `closed`
+    # before actually pushing the tag.
+    types:
+      - synchronize
+      - labeled
+      - unlabeled
+      - closed
+
+jobs:
+  create-release-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create new tag
+        uses: projectsyn/pr-label-tag-action@v1
+        with:
+          trigger: |
+            Test and release prettier image
