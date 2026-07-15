@@ -1,9 +1,33 @@
 #!/bin/sh
 set -e
 
+# Resolve the installed prettier plugin entry files by absolute path.
+# prettier 3 resolves --plugin=<name> relative to the working directory,
+# not the install location, so we pass absolute paths to guarantee
+# discovery regardless of where the image is run from.
+PLUGIN_FLAGS=$(
+  node -e "
+    const deps = process.env.PRETTIER_DEPS;
+    if (!deps) process.exit(0);
+    const names = [
+      'prettier-plugin-packagejson',
+      'prettier-plugin-sort-json',
+      'prettier-plugin-sql',
+      'prettier-plugin-sh',
+    ];
+    const out = [];
+    for (const n of names) {
+      try {
+        out.push('--plugin=' + require.resolve(n, { paths: [deps] }));
+      } catch (e) {}
+    }
+    process.stdout.write(out.join(' '));
+  "
+)
+
 # If no arguments, run prettier on all supported files
 if [ $# -eq 0 ]; then
-    exec prettier --write "**/*.{js,jsx,ts,tsx,html,css,scss,json,md,yaml,yml}"
+    exec prettier $PLUGIN_FLAGS --write "**/*.{js,jsx,ts,tsx,html,css,scss,json,md,yaml,yml,sql,Dockerfile}"
 else
-    exec prettier "$@"
+    exec prettier $PLUGIN_FLAGS "$@"
 fi

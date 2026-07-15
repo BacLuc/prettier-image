@@ -1,12 +1,12 @@
 {
-  "name": "test-project",
-  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
   "description": "A sample project for testing prettier",
   "main": "index.js",
+  "name": "test-project",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "express": "^4.18.2"
-  }
+  "version": "1.0.0"
 }
