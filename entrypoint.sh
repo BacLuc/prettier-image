@@ -10,6 +10,7 @@ PLUGIN_FLAGS=$(
     const deps = process.env.PRETTIER_DEPS;
     if (!deps) process.exit(0);
     const names = [
+      '@trivago/prettier-plugin-sort-imports',
       'prettier-plugin-packagejson',
       'prettier-plugin-sort-json',
       'prettier-plugin-sql',
