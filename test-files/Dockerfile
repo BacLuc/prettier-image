@@ -1,4 +1,4 @@
-FROM node:24.18.1
+FROM node:24.19.0
 RUN apt-get update && apt-get install -y git
 WORKDIR /workspace
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
