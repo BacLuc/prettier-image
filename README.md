@@ -6,7 +6,7 @@ A Docker image for running Prettier with .gitignore support.
 
 - **Gitignore Support**: Respects .gitignore patterns
 - **Flexible Arguments**: Pass any prettier arguments
-- **Plugins**: Formats JSON, package.json, SQL, and Dockerfiles via plugins
+- **Plugins**: Formats JSON, package.json, SQL, Dockerfiles, TOML, XML, properties, and nginx configs via plugins
 
 ## Usage
 
@@ -36,6 +36,10 @@ The image bundles these Prettier plugins (versions tracked in [`package.json`](p
 | `prettier-plugin-sort-json`             | JSON key sorting               |
 | `prettier-plugin-sql`                   | `.sql` files                   |
 | `prettier-plugin-sh`                    | `Dockerfile` and shell scripts |
+| `prettier-plugin-toml`                  | `.toml` files                  |
+| `@prettier/plugin-xml`                  | `.xml` files                   |
+| `prettier-plugin-properties`            | `.properties` files            |
+| `prettier-plugin-nginx`                 | nginx config files             |
 
 Plugins are auto-loaded on every invocation — no `--plugin` flags needed.
 

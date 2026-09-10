@@ -15,6 +15,10 @@ PLUGIN_FLAGS=$(
       'prettier-plugin-sort-json',
       'prettier-plugin-sql',
       'prettier-plugin-sh',
+      'prettier-plugin-toml',
+      '@prettier/plugin-xml',
+      'prettier-plugin-properties',
+      'prettier-plugin-nginx',
     ];
     const out = [];
     for (const n of names) {
@@ -28,7 +32,7 @@ PLUGIN_FLAGS=$(
 
 # If no arguments, run prettier on all supported files
 if [ $# -eq 0 ]; then
-    exec prettier $PLUGIN_FLAGS --write "**/*.{js,jsx,ts,tsx,html,css,scss,json,md,yaml,yml,sql,Dockerfile}"
+    exec prettier $PLUGIN_FLAGS --write "**/*.{js,jsx,ts,tsx,html,css,scss,json,md,yaml,yml,sql,toml,xml,properties,nginx,Dockerfile}"
 else
     exec prettier $PLUGIN_FLAGS "$@"
 fi
