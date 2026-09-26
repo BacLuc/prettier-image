@@ -1,0 +1,9 @@
+// Sample JSONC file for testing prettier formatting.
+{
+  "name": "test-project",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo ok",
+  },
+  "keywords": ["one", "two"],
+}
