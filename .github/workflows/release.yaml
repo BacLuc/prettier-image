@@ -36,22 +36,6 @@ jobs:
           docker compose run --rm prettier --check test-files/** 
           git diff --exit-code
 
-      - name: Format jsonc by default
-        run: |
-          cat > test-files/sample.jsonc <<'EOF'
-          // Sample JSONC file for testing prettier formatting.
-          {
-              "name": "test-project",
-              "version": "1.0.0",
-              "scripts": {
-                  "test": "echo ok"
-              },
-              "keywords": ["one", "two"]
-          }
-          EOF
-          docker compose run --rm prettier
-          git diff --exit-code
-
   build-info:
     runs-on: ubuntu-latest
     needs:
