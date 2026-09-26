@@ -1,4 +1,5 @@
 name: Autorelease
+
 on:
   pull_request:
     # Run when PR head branch is updated (synchronize), when the set of PR
@@ -13,6 +14,12 @@ on:
     # Changes confined to test-files don't warrant a new image release.
     paths-ignore:
       - "test-files/**"
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  actions: write
 
 jobs:
   create-release-tag:
