@@ -32,7 +32,7 @@ PLUGIN_FLAGS=$(
 
 # If no arguments, run prettier on all supported files
 if [ $# -eq 0 ]; then
-    exec prettier $PLUGIN_FLAGS --write "**/*.{js,jsx,ts,tsx,html,css,scss,json,md,yaml,yml,sql,toml,xml,properties,nginx,Dockerfile}"
+    exec prettier $PLUGIN_FLAGS --write "**/*.{js,jsx,ts,tsx,html,css,scss,json,jsonc,md,yaml,yml,sql,toml,xml,properties,nginx,Dockerfile}"
 else
     exec prettier $PLUGIN_FLAGS "$@"
 fi
